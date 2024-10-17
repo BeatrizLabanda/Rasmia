@@ -1,0 +1,180 @@
+/* Elimina los márgenes y rellenos predeterminados para que el video cubra toda la pantalla */
+body, html {
+    margin: 0; /* Elimina el margen predeterminado de la página */
+    padding: 0; /* Elimina el relleno predeterminado de la página */
+    height: 100%; /* Asegura que el cuerpo del documento ocupe el 100% de la altura de la ventana */
+    font-family: Arial, sans-serif; /* Fuente para todo el texto */
+    cursor: url("cursor.png"), auto;  
+}
+
+button, a {
+    cursor: url("cursor.png"), auto; /* Para botones y enlaces */
+}
+
+/* Contenedor para todo el video y el contenido */
+.video-container {
+    position: relative; /* Posiciona el video de manera relativa para agregar contenido encima */
+    height: 100vh; /* Hace que el contenedor ocupe el 100% de la altura de la ventana */
+    width: 100%; /* Hace que el contenedor ocupe todo el ancho de la ventana */
+    overflow: hidden; /* Evita que cualquier contenido sobresalga del contenedor */
+}
+
+/* Estilos del video de fondo */
+#bg-video {
+    position: absolute; /* Coloca el video en posición absoluta dentro del contenedor */
+    top: 0; /* Alinea el video con la parte superior del contenedor */
+    left: 0; /* Alinea el video con el lado izquierdo del contenedor */
+    width: 100%; /* Hace que el video cubra todo el ancho del contenedor */
+    height: 100%; /* Hace que el video cubra toda la altura del contenedor */
+    object-fit: cover; /* El video se ajusta a las dimensiones del contenedor sin distorsionarse */
+    z-index: -1; /* El video se coloca detrás del contenido gracias al índice Z negativo */
+}
+
+/* Contenedor para el texto y los botones */
+.content {
+    display: flex; /* Usa flexbox para alinear el contenido dentro del contenedor */
+    flex-direction: column; /* Coloca los elementos (título y botones) en una columna */
+    justify-content: center; /* Centra los elementos verticalmente en el contenedor */
+    align-items: flex-end; /* Alinea los elementos a la derecha del contenedor */
+    height: 100%; /* Hace que el contenedor del contenido ocupe toda la altura de la pantalla */
+    padding-right: 100px; /* Añade espacio entre el contenido y el borde derecho */
+}
+
+/* Contenedor para los botones */
+.buttons {
+    display: none; /* No se muestran inicialmente */
+    flex-direction: column; /* Coloca los botones uno debajo del otro */
+}
+
+/* Muestra los botones después de 3 segundos y les añade una animación de aparición progresiva */
+.buttons.show {
+    display: flex; /* Los botones se muestran */
+    animation: fadeIn 2s ease-in; /* Aparecen con una animación de 2 segundos */
+}
+
+/* Animación de aparición progresiva */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Comienza invisible */
+    }
+    to {
+        opacity: 1; /* Termina completamente visible */
+    }
+}
+
+/* Estilos para los botones */
+.button {
+    display: inline-block; /* El botón se comporta como un bloque en línea */
+    padding: 8px 18px; /* Añade espacio interno en los lados y arriba/abajo del texto del botón */
+    margin: 25px 0; /* Añade espacio entre los botones */
+    background-color: transparent; /* Color de fondo transparente */
+    color: black; /* Color del texto en los botones */
+    border: 1.4px solid black; /* Bordes negros */
+    border-radius: 20px; /* Bordes redondeados para los botones */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    font-size: 0.8em; /* Tamaño de letra más grande para los botones */
+    transition: background-color 0.2s, transform 0.2s; /* Efecto de transición suave al pasar el ratón por el botón */
+    position: relative;
+}
+
+/* Efecto hover para los botones */
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Cambia el fondo al pasar el ratón */
+    transform: translateY(-3px); /* Mueve el botón hacia arriba al pasar el ratón */
+}
+
+/* Estilos para las cruces de los botones - desde aqui */ 
+
+/* Cross effect only on buttons 3, 4, and 5 */
+.button:nth-of-type(3)::before,
+.button:nth-of-type(4)::before,
+.button:nth-of-type(5)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 15px;
+    background-color: rgb(255, 0, 128); /* Color of the horizontal line */
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.button:nth-of-type(3)::after,
+.button:nth-of-type(4)::after,
+.button:nth-of-type(5)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0px;
+    height: 0%;
+    background-color: rgb(255, 0, 128); /* Color of the vertical line */
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Ensure no cross is applied to the main content or other elements */
+#mainContent::before,
+#mainContent::after {
+    content: none; /* Remove any unintended crosses */
+}
+
+/* Estilos para los botones - hasta aqui */ 
+
+/* Estilos para los botones en la parte superior */
+.top-buttons {
+    position: absolute; /* Posiciona los botones en la esquina superior derecha */
+    top: 50px; /* Distancia desde la parte superior */
+    right: 100px; /* Distancia desde la parte derecha */
+    display: none; /* No se muestran inicialmente */
+    flex-direction: row; /* Alinea los botones en una fila */
+}
+
+.top-button {
+    color: black; /* Color del texto en negro */
+    /*text-transform: uppercase;  Hace que el texto esté en mayúsculas */
+    margin-left: 50px; /* Espacio entre los botones */
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    font-size: 0.9em; /* Tamaño de letra */
+    transition: color 0.3s; /* Efecto de transición al cambiar el color */
+
+}
+
+/* Efecto hover para los botones superiores */
+.top-button:hover {
+    color: gray; /* Cambia el color al pasar el ratón */
+
+}
+
+/* Muestra los botones después de 10 segundos */
+.top-buttons.show {
+    display: flex; /* Los botones se muestran */
+    animation: fadeIn 2s ease-in; /* Aparecen con una animación de 2 segundos */
+}
+
+/* Contenedor para el texto desplazándose */
+.scrolling-text {
+    position: absolute;
+    bottom: 460px; /* Ajusta la posición vertical según prefieras */
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap; /* Mantiene las frases en una sola línea */
+    z-index: 10;
+    text-align: center;
+    display: none; /* Oculto inicialmente */
+    font-size: 1.0em; /* Tamaño del texto */
+    color: rgb(255, 0, 128); /* Color del texto */
+    font-family: 'Press Start 2P', monospace; /* Fuente para el texto */
+    text-transform: uppercase; /* Transformar texto a mayúsculas */
+    animation: scrollText 20s linear infinite; /* Controla la velocidad y repetición del desplazamiento */
+}
+
+/* Ajuste de la animación */
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%); /* Comienza fuera de la pantalla a la derecha */
+    }
+    100% {
+        transform: translateX(-100%); /* Termina completamente fuera del borde izquierdo */
+    }
+}
+

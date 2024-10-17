@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ràsmia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="element"></div>
+
+    <div class="video-container">
+        <video autoplay muted id="bg-video">
+            <source src="tu_video.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+
+        <div class="content">
+            <div class="top-buttons">
+                <a href="AboutMe.html" class="top-button">About me</a>
+                <a href="Contact.html" class="top-button">Contact</a>
+            </div>
+
+            <div class="buttons">
+                <a href="project-one.html" class="button">&emsp; &emsp;Stamina</a>
+                <a href="project-two.html" class="button">&emsp; &emsp;Asphalt.</a>
+                <a href="#" class="button">Open Project Three</a>
+                <a href="#" class="button">Open Project Four</a>
+                <a href="#" class="button">Open Project Five</a>
+            </div>
+        </div>
+
+        <div class="scrolling-text">
+            New projects are coming&emsp; &emsp; &emsp;New projects are coming &emsp; &emsp; &emsp;New projects are coming
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const video = document.getElementById('bg-video');
+            const scrollingText = document.querySelector('.scrolling-text');
+            const buttons = document.querySelector('.buttons');
+            const topButtons = document.querySelector('.top-buttons');
+
+            // Restablecer la variable 'visited' si se recarga la página manualmente
+            if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+                sessionStorage.removeItem('visited');
+            }
+
+            // Si es la primera vez que se carga la página, reproducir el video
+            if (!sessionStorage.getItem('visited')) {
+                sessionStorage.setItem('visited', 'true');
+
+                video.playbackRate = 0.5;
+
+                video.onended = function() {
+                    video.pause();
+                    video.currentTime = video.duration;  // Mantener en el último frame
+                };
+
+                setTimeout(function() {
+                    buttons.classList.add('show');
+                    topButtons.classList.add('show');
+                    scrollingText.style.display = 'block';
+                    scrollingText.querySelector('span').style.animationPlayState = 'running';
+                }, 8000);  // Mostrar el contenido tras 8 segundos
+            } else {
+                // Si ya ha visitado, no reproducir el video y mostrar el contenido de inmediato
+                video.pause();
+                video.currentTime = video.duration;
+
+                buttons.classList.add('show');
+                topButtons.classList.add('show');
+                scrollingText.style.display = 'block';
+                scrollingText.querySelector('span').style.animationPlayState = 'running';
+            }
+        };
+
+        document.body.addEventListener('click', function() {
+            const video = document.getElementById('bg-video');
+            const scrollingText = document.querySelector('.scrolling-text');
+            const buttons = document.querySelector('.buttons');
+            const topButtons = document.querySelector('.top-buttons');
+
+            video.currentTime = video.duration;
+            video.pause();
+
+            buttons.classList.add('show');
+            topButtons.classList.add('show');
+            scrollingText.style.display = 'block';
+            scrollingText.querySelector('span').style.animationPlayState = 'running';
+        });
+    </script>
+</body>
+</html>
+
+

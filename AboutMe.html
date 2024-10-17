@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About me | Ràsmia</title>
+    <style>
+        /* Estilos básicos para la página */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            cursor: url("cursor.png"), auto;  
+        }
+
+        button, a {
+            cursor: url("cursor.png"), auto; /* Para botones y enlaces */
+        }
+
+        /* Contenedor de la imagen de fondo que permite scroll */
+        .background-image {
+            width: 100%;
+            height: auto; /* Mantiene la relación de aspecto de la imagen */
+        }
+
+        /* Botón para volver a la página inicial */
+        .back-button {
+            position: fixed; /* Hace que el botón esté fijo en la pantalla */
+            top: 60px; /* Ubica el botón en la parte superior */
+            left: 50px; /* Ubica el botón a la izquierda */
+            padding: 4px 18px;
+            background-color: rgba(255,255,255,0); /* Color de fondo amarillo transparente para los botones. */
+            color: rgb(192, 51, 37); /* Color del texto en los botones. */
+            border: 2px solid rgb(192, 51, 37); /* Borde amarillo sólido alrededor del botón. */
+             border-radius: 18px; /* Bordes redondeados para los botones. */
+            text-decoration: none; /* Elimina el subrayado de los enlaces (botones). */
+            font-size: 1.0em; /* Tamaño de letra más grande para los botones. */
+            z-index: 1000; /* Asegura que el botón esté siempre encima del contenido */
+        }
+
+        /* Efecto hover para los botones */
+        .back-button:hover {
+            background-color: rgba(192, 51, 37,1); /* Fondo amarillo completo al pasar el ratón por encima. */
+            color: rgb(255 255 255);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Botón para volver a la página inicial -->
+    <a href="index.html" class="back-button">Home</a>
+
+    <!-- Imagen de fondo con scroll -->
+    <img src="AboutMe.png" class="background-image" alt="About me"> <!-- Reemplaza la ruta con la de tu imagen -->
+
+</body>
+</html>
